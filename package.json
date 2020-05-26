@@ -1,10 +1,12 @@
 {
   "name": "alphapay",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Node.js implementation for alphapay",
   "main": "dist/alphapay.js",
+  "types": "dist/alphapay.d.ts",
   "scripts": {
-    "test": "test"
+    "build": "tsc",
+    "test": "mocha -r ts-node/register ./src/test/**/*.spec.ts --timeout 5000"
   },
   "repository": {
     "type": "git",
@@ -20,5 +22,15 @@
   "bugs": {
     "url": "https://github.com/bravemaster619/alphapay/issues"
   },
-  "homepage": "https://github.com/bravemaster619/alphapay#readme"
+  "homepage": "https://github.com/bravemaster619/alphapay#readme",
+  "devDependencies": {
+    "@types/chai": "^4.2.11",
+    "@types/mocha": "^7.0.2",
+    "@types/node": "^14.0.5",
+    "chai": "^4.2.0",
+    "mocha": "^7.2.0",
+    "ts-node": "^8.10.1",
+    "tslint": "^6.1.2",
+    "typescript": "^3.9.3"
+  }
 }

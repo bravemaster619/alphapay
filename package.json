@@ -6,7 +6,7 @@
   "types": "dist/alphapay.d.ts",
   "scripts": {
     "build": "tsc",
-    "publish": "npm run bulid && npm publish --access public",
+    "publish": "npm run build && npm publish --access public",
     "test": "mocha -r ts-node/register ./src/test/**/*.spec.ts --timeout 5000"
   },
   "repository": {

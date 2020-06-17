@@ -1,6 +1,6 @@
 export enum CurrencyType {
-  CAD,
-  CNY
+  CAD = "CAD",
+  CNY = "CNY"
 }
 
 export enum ChannelType {

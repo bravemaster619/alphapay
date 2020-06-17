@@ -1,4 +1,5 @@
-![build](https://github.com/bravemaster619/alphapay/workflows/build/badge.svg)
+[![build](https://github.com/bravemaster619/alphapay/workflows/build/badge.svg)](https://github.com/bravemaster619/alphapay/actions)
+[![npm downloads](https://img.shields.io/npm/dt/alphapay?label=npm%20downloads&style=plastic)](https://www.npmjs.com/package/alphapay)
 
 # Overview
 

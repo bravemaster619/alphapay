@@ -10,6 +10,7 @@ import { SDK } from "./types/sdk";
 import { Miniprogram } from "./types/miniprogram";
 import { Retail } from "./types/retail";
 import { Common } from "./types/common";
+import { SuccessNotification } from "./types/success-notification";
 
 export default class Alphapay {
 
@@ -22,16 +23,14 @@ export default class Alphapay {
    * Sign parameters are all attached to URL as query params, and the order is irrelevant.
    * 
    */
-  getSignString() {
-    const nonce = getRandomString();
-    const time = `${(new Date()).getTime()}`;
-    const validString = [
-      this.partnerCode,
-      time,
-      nonce,
-      this.credentialCode
-    ].join("&");
-    const sign = crypto.createHash('sha256').update(validString).digest('hex').toLowerCase();
+  getSignatureUrl(nonce = null, time = null) {
+    if (nonce === null) {
+      nonce = getRandomString();
+    }
+    if (time === null) {
+      time = `${(new Date()).getTime()}`;
+    }
+    const sign = this.getSignature(nonce, time);
     return `?time=${time}&nonce_str=${nonce}&sign=${sign}`;
   }
 
@@ -43,7 +42,7 @@ export default class Alphapay {
     return this.sendRequest({
       hostname: "pay.alphapay.ca",
       port: 443,
-      path: `/api/v1.0/gateway/partners/${this.partnerCode}/orders/${orderId}${this.getSignString()}`,
+      path: `/api/v1.0/gateway/partners/${this.partnerCode}/orders/${orderId}${this.getSignatureUrl()}`,
       method: "PUT",
       headers: {
         "Accept": "application/json",
@@ -58,7 +57,7 @@ export default class Alphapay {
    * the Order Query API to make sure the payment has succeeded.
    */
   getQRCodePaymentPageUrl(orderId: string, redirect: string): string {
-    return `https://pay.alphapay.ca/api/v1.0/gateway/partners/${this.partnerCode}/orders/${orderId}/pay${this.getSignString()}&redirect=${encodeURIComponent(redirect)}`;
+    return `https://pay.alphapay.ca/api/v1.0/gateway/partners/${this.partnerCode}/orders/${orderId}/pay${this.getSignatureUrl()}&redirect=${encodeURIComponent(redirect)}`;
   }
 
   /**
@@ -72,7 +71,7 @@ export default class Alphapay {
     return this.sendRequest({
       hostname: "pay.alphapay.ca",
       port: 443,
-      path: `/api/v1.0/web_gateway/partners/${this.partnerCode}/orders/${orderId}${this.getSignString()}`,
+      path: `/api/v1.0/web_gateway/partners/${this.partnerCode}/orders/${orderId}${this.getSignatureUrl()}`,
       method: "PUT",
       headers: {
         "Accept": "application/json",
@@ -90,7 +89,7 @@ export default class Alphapay {
     return this.sendRequest({
       hostname: "pay.alphapay.ca",
       port: 443,
-      path: `/api/v1.0/jsapi_gateway/partners/${this.partnerCode}/orders/${orderId}${this.getSignString()}`,
+      path: `/api/v1.0/jsapi_gateway/partners/${this.partnerCode}/orders/${orderId}${this.getSignatureUrl()}`,
       method: "PUT",
       headers: {
         "Accept": "application/json",
@@ -106,7 +105,7 @@ export default class Alphapay {
    * to make sure the payment has succeeded.
    */
   getWechatJSAPIPaymentPageUrl(orderId: string, redirect: string, directpay: boolean = false) {
-    return `https://pay.alphapay.ca/api/v1.0/wechat_jsapi_gateway/partners/${this.partnerCode}_order_${orderId}${this.getSignString()}&directpay=${directpay}&redirect=${redirect}`;
+    return `https://pay.alphapay.ca/api/v1.0/wechat_jsapi_gateway/partners/${this.partnerCode}_order_${orderId}${this.getSignatureUrl()}&directpay=${directpay}&redirect=${redirect}`;
   }
 
   /**
@@ -116,7 +115,7 @@ export default class Alphapay {
    * to make sure the payment has succeeded.
    */
   getAlipayJSAPIPaymentPageUrl(orderId: string, redirect: string, directpay: boolean = false) {
-    return `https://pay.alphapay.ca/api/v1.0/gateway/alipay/partners/${this.partnerCode}/orders/${orderId}/app_pay${this.getSignString()}&directpay=${directpay}&redirect=${redirect}`;
+    return `https://pay.alphapay.ca/api/v1.0/gateway/alipay/partners/${this.partnerCode}/orders/${orderId}/app_pay${this.getSignatureUrl()}&directpay=${directpay}&redirect=${redirect}`;
   }
 
   /**
@@ -130,7 +129,7 @@ export default class Alphapay {
     return this.sendRequest({
       hostname: "pay.alphapay.ca",
       port: 443,
-      path: `/api/v1.0/gateway/partners/${this.partnerCode}/native_jsapi/${orderId}${this.getSignString()}`,
+      path: `/api/v1.0/gateway/partners/${this.partnerCode}/native_jsapi/${orderId}${this.getSignatureUrl()}`,
       method: "PUT",
       headers: {
         "Accept": "application/json",
@@ -149,7 +148,7 @@ export default class Alphapay {
     return this.sendRequest({
       hostname: "pay.alphapay.ca",
       port: 443,
-      path: `/api/v1.0/h5_payment/partners/${this.partnerCode}/orders/${orderId}${this.getSignString()}`,
+      path: `/api/v1.0/h5_payment/partners/${this.partnerCode}/orders/${orderId}${this.getSignatureUrl()}`,
       method: "PUT",
       headers: {
         "Accept": "application/json",
@@ -163,7 +162,7 @@ export default class Alphapay {
    * it is recommended to call the Order Query API to make sure the payment has succeeded.
    */
   getH5PaymentPage(orderId: string, redirect: string): string {
-    return `https://pay.alphapay.ca/api/v1.0/h5_payment/partners/${this.partnerCode}/orders/${orderId}/pay${this.getSignString()}&redirect=${redirect}`;
+    return `https://pay.alphapay.ca/api/v1.0/h5_payment/partners/${this.partnerCode}/orders/${orderId}/pay${this.getSignatureUrl()}&redirect=${redirect}`;
   }
 
   /**
@@ -177,7 +176,7 @@ export default class Alphapay {
     return this.sendRequest({
       hostname: "pay.alphapay.ca",
       port: 443,
-      path: `/api/v1.0/gateway/partners/${this.partnerCode}/app_orders/${orderId}${this.getSignString()}`,
+      path: `/api/v1.0/gateway/partners/${this.partnerCode}/app_orders/${orderId}${this.getSignatureUrl()}`,
       method: "PUT",
       headers: {
         "Accept": "application/json",
@@ -193,7 +192,7 @@ export default class Alphapay {
     return this.sendRequest({
       hostname: "pay.alphapay.ca",
       port: 443,
-      path: `/api/v1.0/gateway/partners/${this.partnerCode}/microapp_orders/${orderId}${this.getSignString()}`,
+      path: `/api/v1.0/gateway/partners/${this.partnerCode}/microapp_orders/${orderId}${this.getSignatureUrl()}`,
       method: "PUT",
       headers: {
         "Accept": "application/json",
@@ -212,7 +211,7 @@ export default class Alphapay {
     return this.sendRequest({
       hostname: "pay.alphapay.ca",
       port: 443,
-      path: `/api/v1.0/micropay/partners/${this.partnerCode}/orders/${orderId}${this.getSignString()}`,
+      path: `/api/v1.0/micropay/partners/${this.partnerCode}/orders/${orderId}${this.getSignatureUrl()}`,
       method: "PUT",
       headers: {
         "Accept": "application/json",
@@ -231,7 +230,7 @@ export default class Alphapay {
     return this.sendRequest({
       hostname: "pay.alphapay.ca",
       port: 443,
-      path: `/api/v1.0/retail_qrcode/partners/${this.partnerCode}/orders/${orderId}${this.getSignString()}`,
+      path: `/api/v1.0/retail_qrcode/partners/${this.partnerCode}/orders/${orderId}${this.getSignatureUrl()}`,
       method: "PUT",
       headers: {
         "Accept": "application/json",
@@ -249,7 +248,7 @@ export default class Alphapay {
     return this.sendRequest({
       hostname: "pay.alphapay.ca",
       port: 443,
-      path: `/api/v1.0/gateway/partners/${this.partnerCode}/channel_exchange_rate${this.getSignString()}`,
+      path: `/api/v1.0/gateway/partners/${this.partnerCode}/channel_exchange_rate${this.getSignatureUrl()}`,
       method: "GET",
       headers: {
         "Accept": "application/json"
@@ -265,7 +264,7 @@ export default class Alphapay {
     return this.sendRequest({
       hostname: "pay.alphapay.ca",
       port: 443,
-      path: `/api/v1.0/gateway/partners/${this.partnerCode}/orders/${orderId}/${this.getSignString()}`,
+      path: `/api/v1.0/gateway/partners/${this.partnerCode}/orders/${orderId}/${this.getSignatureUrl()}`,
       method: "GET",
       headers: {
         "Accept": "application/json"
@@ -304,7 +303,7 @@ export default class Alphapay {
   }
 
   getOrders(date?: string, status?: string, page?: number, limit?: number): Promise<Common.CheckOrders.ResponseType> {
-    let path = `/api/v1.0/gateway/partners/${this.partnerCode}/orders${this.getSignString()}`;
+    let path = `/api/v1.0/gateway/partners/${this.partnerCode}/orders${this.getSignatureUrl()}`;
     const queryParam = { date, status, page, limit };
     for (var key in queryParam) {
       if (queryParam[key]) {
@@ -327,7 +326,7 @@ export default class Alphapay {
     return this.sendRequest({
       hostname: "pay.alphapay.ca",
       port: 443,
-      path: `/api/v1.0/gateway/partners/${this.partnerCode}/transactions${this.getSignString()}&date=${date}`,
+      path: `/api/v1.0/gateway/partners/${this.partnerCode}/transactions${this.getSignatureUrl()}&date=${date}`,
       method: "GET",
       headers: {
         "Accept": "application/json",
@@ -340,7 +339,7 @@ export default class Alphapay {
     return this.sendRequest({
       hostname: "pay.alphapay.ca",
       port: 443,
-      path: `/api/v1.0/gateway/partners/${this.partnerCode}/settlements${this.getSignString()}&date=${date}`,
+      path: `/api/v1.0/gateway/partners/${this.partnerCode}/settlements${this.getSignatureUrl()}&date=${date}`,
       method: "GET",
       headers: {
         "Accept": "application/json",
@@ -353,7 +352,7 @@ export default class Alphapay {
     return this.sendRequest({
       hostname: "pay.alphapay.ca",
       port: 443,
-      path: `/api/v1.0/gateway/partners/${this.partnerCode}/orders/${orderId}/settle_lock${this.getSignString()}`,
+      path: `/api/v1.0/gateway/partners/${this.partnerCode}/orders/${orderId}/settle_lock${this.getSignatureUrl()}`,
       method: "PUT",
       headers: {
         "Accept": "application/json",
@@ -366,13 +365,27 @@ export default class Alphapay {
     return this.sendRequest({
       hostname: "pay.alphapay.ca",
       port: 443,
-      path: `/api/v1.0/gateway/partners/${this.partnerCode}/orders/${orderId}/release_settle_lock${this.getSignString()}`,
+      path: `/api/v1.0/gateway/partners/${this.partnerCode}/orders/${orderId}/release_settle_lock${this.getSignatureUrl()}`,
       method: "PUT",
       headers: {
         "Accept": "application/json",
         "Content-Type": "application/json"
       }
     });
+  }
+
+  isNotificationValid(notification: SuccessNotification): boolean {
+    return notification.sign === this.getSignature(notification.nonce_str, `${notification.time}`)
+  }
+
+  protected getSignature(nonce: string, time: string) {
+    const validString = [
+      this.partnerCode,
+      time,
+      nonce,
+      this.credentialCode
+    ].join("&");
+    return crypto.createHash('sha256').update(validString).digest('hex').toLowerCase();
   }
 
   protected sendRequest(option: https.RequestOptions, data?: any): Promise<any> {

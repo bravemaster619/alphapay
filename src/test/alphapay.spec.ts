@@ -13,9 +13,9 @@ import { Retail } from "../../src/types/retail";
 let alphapay = new Alphapay("ZZZ6", "pQ5Jc9eoTcsxqPY5uQ3p2WmvSy0zEYeP");
 
 describe("Alphapay", () => {
-  describe("getSignString", () => {
+  describe("getSignatureUrl", () => {
     it("should generate a string", () => {
-      const sign = alphapay.getSignString();
+      const sign = alphapay.getSignatureUrl();
       expect(sign).to.be.a("string");
       expect(sign).to.be.not.empty;
     });
@@ -240,6 +240,26 @@ describe("Alphapay", () => {
       const response = await alphapay.releaseSuspendSettlement("ZZZ620200304151231");
       expect(response).to.be.not.empty;
       expect(response.return_code).to.be.not.empty;
+    });
+  });
+  describe('isNotificationValid', () => {
+    it("should return true if notification is valid; false otherwise", () => {
+      const signatureUrl = alphapay.getSignatureUrl();
+      const time = signatureUrl.split("&")[0].replace("?time=", "");
+      const nonce = signatureUrl.split("&")[1].replace("nonce_str=", "");
+      const sign = signatureUrl.split("&")[2].replace("sign=", "");
+      const notification = {
+        time, nonce_str: nonce, sign
+      };
+      // @ts-ignore
+      expect(alphapay.isNotificationValid(notification)).to.eq(true);
+      let invalidNotification = {
+        time: Number(time) - 1,
+        nonce_str: nonce,
+        sign
+      };
+      // @ts-ignore
+      expect(alphapay.isNotificationValid(invalidNotification)).to.eq(false);
     });
   });
 });

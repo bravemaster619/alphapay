@@ -11,19 +11,19 @@ export namespace JSAPI {
       notify_url?: string,
     }
     export enum ResultCodeType {
-      SUCCESS,
-      EXISTS
+      SUCCESS = "SUCCESS",
+      EXISTS = "EXISTS"
     }
     export enum ErrorCodeType {
-      ORDER_MISMATCH,
-      ORDER_PAID,
-      SYSTEMERROR,
-      INVALID_SHORT_ID,
-      SIGN_TIMEOUT,
-      INVALID_SIGN,
-      PARAM_INVALID,
-      NOT_PERMITTED,
-      INVALID_CHANNEL
+      ORDER_MISMATCH = "ORDER_MISMATCH",
+      ORDER_PAID = "ORDER_PAID",
+      SYSTEMERROR = "SYSTEMERROR",
+      INVALID_SHORT_ID = "INVALID_SHORT_ID",
+      SIGN_TIMEOUT = "SIGN_TIMEOUT",
+      INVALID_SIGN = "INVALID_SIGN",
+      PARAM_INVALID = "PARAM_INVALID",
+      NOT_PERMITTED = "NOT_PERMITTED",
+      INVALID_CHANNEL = "INVALID_CHANNEL"
     }
     export interface SuccessResponseInterface {
       partner_order_id: string;
@@ -44,15 +44,15 @@ export namespace JSAPI {
   }
   export namespace PaymentPage {
     export enum ErrorCodeType {
-      ORDER_NOT_EXIST,
-      ORDER_MISMATCH,
-      SYSTEMERROR,
-      INVALID_SHORT_ID,
-      SIGN_TIMEOUT,
-      INVALID_SIGN,
-      PARAM_INVALID,
-      NOT_PERMITTED,
-      INVALID_CHANNEL
+      ORDER_NOT_EXIST = "ORDER_NOT_EXIST",
+      ORDER_MISMATCH = "ORDER_MISMATCH",
+      SYSTEMERROR = "SYSTEMERROR",
+      INVALID_SHORT_ID= "INVALID_SHORT_ID",
+      SIGN_TIMEOUT = "SIGN_TIMEOUT",
+      INVALID_SIGN = "INVALID_SIGN",
+      PARAM_INVALID = "PARAM_INVALID",
+      NOT_PERMITTED = "NOT_PERMITTED",
+      INVALID_CHANNEL = "INVALID_CHANNEL"
     }
     export interface ErrorResponseInterface {
       return_code: ErrorCodeType,

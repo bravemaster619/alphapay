@@ -1,13 +1,13 @@
 {
   "name": "alphapay",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Node.js implementation for alphapay",
   "main": "dist/alphapay.js",
   "types": "dist/alphapay.d.ts",
   "scripts": {
     "build": "tsc",
     "publish": "npm run build && npm publish --access public",
-    "test": "mocha -r ts-node/register ./src/test/**/*.spec.ts --timeout 5000"
+    "test": "mocha -r ts-node/register ./src/test/**/*.spec.ts --timeout 10000"
   },
   "repository": {
     "type": "git",

@@ -11,20 +11,20 @@ export namespace H5 {
       operator?: string
     }
     export enum ResultCodeType {
-      SUCCESS,
-      EXISTS
+      SUCCESS = "SUCCESS",
+      EXISTS = "EXISTS"
     }
     export enum ErrorCodeType {
-      ORDER_MISMATCH,
-      ORDER_PAID,
-      SYSTEMERROR,
-      INVALID_SHORT_ID,
-      SIGN_TIMEOUT,
-      INVALID_SIGN,
-      PARAM_INVALID,
-      NOT_PERMITTED,
-      INVALID_CHANNEL,
-      SECONDARY_MERCHANT_ID_INVALID
+      ORDER_MISMATCH = "ORDER_MISMATCH",
+      ORDER_PAID = "ORDER_PAID",
+      SYSTEMERROR = "SYSTEMERROR",
+      INVALID_SHORT_ID = "INVALID_SHORT_ID",
+      SIGN_TIMEOUT = "SIGN_TIMEOUT",
+      INVALID_SIGN = "INVALID_SIGN",
+      PARAM_INVALID = "PARAM_INVALID",
+      NOT_PERMITTED = "NOT_PERMITTED",
+      INVALID_CHANNEL = "INVALID_CHANNEL",
+      SECONDARY_MERCHANT_ID_INVALID = "SECONDARY_MERCHANT_ID_INVALID"
     }
     export interface SuccessResponseInterface {
       partner_order_id: string;
@@ -46,16 +46,16 @@ export namespace H5 {
   }
   export namespace PaymentPage {
     export enum ErrorCodeType {
-      ORDER_NOT_EXIST,
-      ORDER_MISMATCH,
-      ORDER_PAID,
-      SYSTEMERROR,
-      INVALID_SHORT_ID,
-      SIGN_TIMEOUT,
-      INVALID_SIGN,
-      PARAM_INVALID,
-      NOT_PERMITTED,
-      INVALID_CHANNEL
+      ORDER_NOT_EXIST = "ORDER_NOT_EXIST",
+      ORDER_MISMATCH = "ORDER_MISMATCH",
+      ORDER_PAID = "ORDER_PAID",
+      SYSTEMERROR = "SYSTEMERROR",
+      INVALID_SHORT_ID = "INVALID_SHORT_ID",
+      SIGN_TIMEOUT = "SIGN_TIMEOUT",
+      INVALID_SIGN = "INVALID_SIGN",
+      PARAM_INVALID = "PARAM_INVALID",
+      NOT_PERMITTED = "NOT_PERMITTED",
+      INVALID_CHANNEL = "INVALID_CHANNEL"
     }
   }
 }

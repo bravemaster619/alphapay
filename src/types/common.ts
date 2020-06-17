@@ -9,13 +9,13 @@ export namespace Common {
       return_code: string
     }
     export enum ErrorCodeType {
-      SYSTEMERROR,
-      INVALID_SHORT_ID,
-      SIGN_TIMEOUT,
-      INVALID_SIGN,
-      PARAM_INVALID,
-      NOT_PERMITTED,
-      INVALID_CHANNEL
+      SYSTEMERROR = "SYSTEMERROR",
+      INVALID_SHORT_ID = "INVALID_SHORT_ID",
+      SIGN_TIMEOUT = "SIGN_TIMEOUT",
+      INVALID_SIGN = "INVALID_SIGN",
+      PARAM_INVALID = "PARAM_INVALID",
+      NOT_PERMITTED = "NOT_PERMITTED",
+      INVALID_CHANNEL = "INVALID_CHANNEL"
     }
     export interface ErrorResponseInterface {
       return_code: ErrorCodeType,
@@ -25,13 +25,13 @@ export namespace Common {
   }
   export namespace OrderStatus {
     export enum ResultCodeType {
-      PAYING,
-      CREATE_FAIL,
-      CLOSED,
-      PAY_FAIL,
-      PAY_SUCCESS,
-      PARTIAL_REFUND,
-      FULL_REFUND
+      PAYING = "PAYING",
+      CREATE_FAIL = "CREATE_FAIL",
+      CLOSED = "CLOSED",
+      PAY_FAIL = "PAY_FAIL",
+      PAY_SUCCESS = "PAY_SUCCESS",
+      PARTIAL_REFUND = "PARTIAL_REFUND",
+      FULL_REFUND = "FULL_REFUND"
     }
     export interface SuccessResponseInterface {
       create_time: string, // yyyy-MM-dd HH:mm:ss, UTC-8
@@ -51,15 +51,15 @@ export namespace Common {
       order_id: string
     }
     export enum ErrorCodeType {
-      ORDER_NOT_EXIST,
-      ORDER_MISMATCH,
-      SYSTEMERROR,
-      INVALID_SHORT_ID,
-      SIGN_TIMEOUT,
-      INVALID_SIGN,
-      PARAM_INVALID,
-      NOT_PERMITTED,
-      INVALID_CHANNEL
+      ORDER_NOT_EXIST = "ORDER_NOT_EXIST",
+      ORDER_MISMATCH = "ORDER_MISMATCH",
+      SYSTEMERROR = "SYSTEMERROR",
+      INVALID_SHORT_ID = "INVALID_SHORT_ID",
+      SIGN_TIMEOUT = "SIGN_TIMEOUT",
+      INVALID_SIGN = "INVALID_SIGN",
+      PARAM_INVALID = "PARAM_INVALID",
+      NOT_PERMITTED = "NOT_PERMITTED",
+      INVALID_CHANNEL = "INVALID_CHANNEL"
     }
     export interface ErrorResponseInterface {
       return_code: ErrorCodeType,
@@ -72,24 +72,24 @@ export namespace Common {
       fee: number
     }
     export enum ResultCodeType {
-      WAITING,
-      CREATE_FAILED,
-      SUCCESS,
-      FAILED,
-      FINISHED,
-      CHANGE
+      WAITING = "WAITING",
+      CREATE_FAILED = "CREATE_FAILED",
+      SUCCESS = "SUCCESS",
+      FAILED = "FAILED",
+      FINISHED = "FINISHED",
+      CHANGE = "CHANGE"
     }
     export enum ErrorCodeType {
-      ORDER_NOT_EXIST,
-      ORDER_MISMATCH,
-      ORDER_NOT_PAID,
-      SYSTEMERROR,
-      INVALID_SHORT_ID,
-      SIGN_TIMEOUT,
-      INVALID_SIGN,
-      PARAM_INVALID,
-      NOT_PERMITTED,
-      INVALID_CHANNEL
+      ORDER_NOT_EXIST = "ORDER_NOT_EXIST",
+      ORDER_MISMATCH = "ORDER_MISMATCH",
+      ORDER_NOT_PAID = "ORDER_NOT_PAID",
+      SYSTEMERROR = "SYSTEMERROR",
+      INVALID_SHORT_ID = "INVALID_SHORT_ID",
+      SIGN_TIMEOUT = "SIGN_TIMEOUT",
+      INVALID_SIGN = "INVALID_SIGN",
+      PARAM_INVALID = "PARAM_INVALID",
+      NOT_PERMITTED = "NOT_PERMITTED",
+      INVALID_CHANNEL = "INVALID_CHANNEL"
     }
     export interface SuccessResponseInterface {
       amount: number,
@@ -109,26 +109,26 @@ export namespace Common {
   }
   export namespace RefundOrderStatus {
     export enum ResultCodeType {
-      WAITING,
-      CREATE_FAILED,
-      SUCCESS,
-      FAILED,
-      FINISHED,
-      CHANGE
+      WAITING = "WAITING",
+      CREATE_FAILED = "CREATE_FAILED",
+      SUCCESS = "SUCCESS",
+      FAILED = "FAILED",
+      FINISHED = "FINISHED",
+      CHANGE = "CHANGE"
     }
     export enum ErrorCodeType {
-      ORDER_NOT_EXIST,
-      ORDER_MISMATCH,
-      ORDER_NOT_PAID,
-      REFUND_NOT_EXIST,
-      REFUND_MISMATCH,
-      SYSTEMERROR,
-      INVALID_SHORT_ID,
-      SIGN_TIMEOUT,
-      INVALID_SIGN,
-      PARAM_INVALID,
-      NOT_PERMITTED,
-      INVALID_CHANNEL
+      ORDER_NOT_EXIST = "ORDER_NOT_EXIST",
+      ORDER_MISMATCH = "ORDER_MISMATCH",
+      ORDER_NOT_PAID = "ORDER_NOT_PAID",
+      REFUND_NOT_EXIST = "REFUND_NOT_EXIST",
+      REFUND_MISMATCH = "REFUND_MISMATCH",
+      SYSTEMERROR = "SYSTEMERROR",
+      INVALID_SHORT_ID = "INVALID_SHORT_ID",
+      SIGN_TIMEOUT = "SIGN_TIMEOUT",
+      INVALID_SIGN = "INVALID_SIGN",
+      PARAM_INVALID = "PARAM_INVALID",
+      NOT_PERMITTED = "NOT_PERMITTED",
+      INVALID_CHANNEL = "INVALID_CHANNEL"
     }
     export interface SuccessResponseInterface {
       amount: number,
@@ -160,14 +160,14 @@ export namespace Common {
       totalPages: number
     }
     export enum OrderStatus {
-      SUBMITTING,
-      SUBMIT_FAIL,
-      WAITING_PAYMENT,
-      CLOSED,
-      PAYMENT_FAIL,
-      SUCCESS,
-      PARTIAL_REFUND,
-      FULL_REFUND
+      SUBMITTING = "SUBMITTING",
+      SUBMIT_FAIL = "SUBMIT_FAIL",
+      WAITING_PAYMENT = "WAITING_PAYMENT",
+      CLOSED = "CLOSED",
+      PAYMENT_FAIL = "PAYMENT_FAIL",
+      SUCCESS = "SUCCESS",
+      PARTIAL_REFUND = "PARTIAL_REFUND",
+      FULL_REFUND = "FULL_REFUND"
     }
     export interface OrderInterface {
       create_time: string, // 'yyyyMMdd' ,UTC-8
@@ -199,14 +199,14 @@ export namespace Common {
       analysis: AnalysisInterface,
       return_code: string
     }
-    export interface ErrorCodeType {
-      SYSTEMERROR,
-      INVALID_SHORT_ID,
-      SIGN_TIMEOUT,
-      INVALID_SIGN,
-      PARAM_INVALID,
-      NOT_PERMITTED,
-      INVALID_CHANNEL
+    export enum ErrorCodeType {
+      SYSTEMERROR = "SYSTEMERROR",
+      INVALID_SHORT_ID = "INVALID_SHORT_ID",
+      SIGN_TIMEOUT = "SIGN_TIMEOUT",
+      INVALID_SIGN = "INVALID_SIGN",
+      PARAM_INVALID = "PARAM_INVALID",
+      NOT_PERMITTED = "NOT_PERMITTED",
+      INVALID_CHANNEL = "INVALID_CHANNEL"
     }
     export interface ErrorResponseInterface {
       return_code: ErrorCodeType,
@@ -264,13 +264,13 @@ export namespace Common {
       return_code: string
     }
     export enum ErrorCodeType {
-      SYSTEMERROR,
-      INVALID_SHORT_ID,
-      SIGN_TIMEOUT,
-      INVALID_SIGN,
-      PARAM_INVALID,
-      NOT_PERMITTED,
-      INVALID_CHANNEL
+      SYSTEMERROR = "SYSTEMERROR",
+      INVALID_SHORT_ID = "INVALID_SHORT_ID",
+      SIGN_TIMEOUT = "SIGN_TIMEOUT",
+      INVALID_SIGN = "INVALID_SIGN",
+      PARAM_INVALID = "PARAM_INVALID",
+      NOT_PERMITTED = "NOT_PERMITTED",
+      INVALID_CHANNEL = "INVALID_CHANNEL"
     }
     export interface ErrorResponseInterface {
       return_code: ErrorCodeType,
@@ -295,13 +295,13 @@ export namespace Common {
       return_code: string
     }
     export enum ErrorCodeType {
-      SYSTEMERROR,
-      INVALID_SHORT_ID,
-      SIGN_TIMEOUT,
-      INVALID_SIGN,
-      PARAM_INVALID,
-      NOT_PERMITTED,
-      INVALID_CHANNEL
+      SYSTEMERROR = "SYSTEMERROR",
+      INVALID_SHORT_ID = "INVALID_SHORT_ID",
+      SIGN_TIMEOUT = "SIGN_TIMEOUT",
+      INVALID_SIGN = "INVALID_SIGN",
+      PARAM_INVALID = "PARAM_INVALID",
+      NOT_PERMITTED = "NOT_PERMITTED",
+      INVALID_CHANNEL = "INVALID_CHANNEL"
     }
     export interface ErrorResponseInterface {
       return_code: ErrorCodeType,
@@ -311,24 +311,24 @@ export namespace Common {
   }
   export namespace SuspendSettlement {
     export enum ResultCodeType {
-      WAITING,
-      CREATE_FAILED,
-      SUCCESS,
-      FAILED,
-      FINISHED,
-      CHANGE
+      WAITING = "WAITING",
+      CREATE_FAILED = "CREATE_FAILED",
+      SUCCESS = "SUCCESS",
+      FAILED = "FAILED",
+      FINISHED = "FINISHED",
+      CHANGE = "CHANGE"
     }
     export enum ErrorCodeType {
-      ORDER_NOT_EXIST,
-      ORDER_MISMATCH,
-      ORDER_NOT_PAID,
-      SYSTEMERROR,
-      INVALID_SHORT_ID,
-      SIGN_TIMEOUT,
-      INVALID_SIGN,
-      PARAM_INVALID,
-      NOT_PERMITTED,
-      INVALID_CHANNEL
+      ORDER_NOT_EXIST = "ORDER_NOT_EXIST",
+      ORDER_MISMATCH = "ORDER_MISMATCH",
+      ORDER_NOT_PAID = "ORDER_NOT_PAID",
+      SYSTEMERROR = "SYSTEMERROR",
+      INVALID_SHORT_ID = "INVALID_SHORT_ID",
+      SIGN_TIMEOUT = "SIGN_TIMEOUT",
+      INVALID_SIGN = "INVALID_SIGN",
+      PARAM_INVALID = "PARAM_INVALID",
+      NOT_PERMITTED = "NOT_PERMITTED",
+      INVALID_CHANNEL = "INVALID_CHANNEL"
     }
     export interface SuccessResponseInterface {
       result_code: ResultCodeType,
@@ -342,24 +342,24 @@ export namespace Common {
   }
   export namespace ReleaseSuspendedSettlement {
     export enum ResultCodeType {
-      WAITING,
-      CREATE_FAILED,
-      SUCCESS,
-      FAILED,
-      FINISHED,
-      CHANGE
+      WAITING = "WAITING",
+      CREATE_FAILED = "CREATE_FAILED",
+      SUCCESS = "SUCCESS",
+      FAILED = "FAILED",
+      FINISHED = "FINISHED",
+      CHANGE = "CHANGE"
     }
     export enum ErrorCodeType {
-      ORDER_NOT_EXIST,
-      ORDER_MISMATCH,
-      ORDER_NOT_PAID,
-      SYSTEMERROR,
-      INVALID_SHORT_ID,
-      SIGN_TIMEOUT,
-      INVALID_SIGN,
-      PARAM_INVALID,
-      NOT_PERMITTED,
-      INVALID_CHANNEL
+      ORDER_NOT_EXIST = "ORDER_NOT_EXIST",
+      ORDER_MISMATCH = "ORDER_MISMATCH",
+      ORDER_NOT_PAID = "ORDER_NOT_PAID",
+      SYSTEMERROR = "SYSTEMERROR",
+      INVALID_SHORT_ID = "INVALID_SHORT_ID",
+      SIGN_TIMEOUT = "SIGN_TIMEOUT",
+      INVALID_SIGN = "INVALID_SIGN",
+      PARAM_INVALID = "PARAM_INVALID",
+      NOT_PERMITTED = "NOT_PERMITTED",
+      INVALID_CHANNEL = "INVALID_CHANNEL"
     }
     export interface SuccessResponseInterface {
       result_code: ResultCodeType,

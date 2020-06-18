@@ -7,7 +7,7 @@
   "scripts": {
     "build": "tsc",
     "release": "npm run build && npm publish --access public",
-    "test": "mocha -r ts-node/register ./src/test/**/*.spec.ts --timeout 10000"
+    "test": "mocha -r ts-node/register  --timeout 10000 --recursive ./src/test/**/*.spec.ts"
   },
   "repository": {
     "type": "git",

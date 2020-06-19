@@ -57,7 +57,7 @@ window.location.href = redirectUrl;
 
 ## Handle success notification in backend
 
-Alphapay will post [SuccessNotification](https://github.com/bravemaster619/alphapay/blob/master/src/types/success-notification.ts) to `notify_url` when payment succceeds.
+Alphapay will post [SuccessNotification](https://github.com/bravemaster619/alphapay/blob/master/src/types/success-notification.ts) [**up to 3 times**](https://www.alphapay.com/api/CAD_en.html#PaymentSuccessPage)  to `notify_url` when payment succceeds.
 
 ```javascript
 const notification: SuccessNotification = req.body;
@@ -69,6 +69,7 @@ if (!alphapay.isNotificationValid(notification)) {
 }
 const orderId = notification.partner_order_id; // your-order-id
 const alphaOrder = await alphapay.getOrderStatus(orderId);
+// IMPORTANT: your backend should be able to handle the repeated success notifications
 doSomethingElseInYourBackend(orderId, alphaOrder);
 ```
 
